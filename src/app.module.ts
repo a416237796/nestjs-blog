@@ -7,13 +7,24 @@ import { ArticleModule } from './module/article/article.module';
 import { UserModule } from './module/user/user.module';
 import { FileModule } from './module/file/file.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { MongooseModule } from '@nestjs/mongoose';
+import database from './config/database';
 
 @Module({
-  imports: [ClassifyModule, ArticleModule, UserModule, FileModule],
+  imports: [
+    MongooseModule.forRoot(database.mongodbUrl),
+    ClassifyModule,
+    ArticleModule,
+    UserModule,
+    FileModule,
+  ],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_INTERCEPTOR,
-    useClass: LoggingInterceptor,
-  }],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+  ],
 })
 export class AppModule {}
