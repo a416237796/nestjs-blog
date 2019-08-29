@@ -1,6 +1,5 @@
-export interface Classify {
+export interface Tag {
   name: string;
-  pid: string;
   createdAt: number;
   updatedAt: number;
 }

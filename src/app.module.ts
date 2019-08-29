@@ -8,6 +8,7 @@ import { UserModule } from './module/user/user.module';
 import { FileModule } from './module/file/file.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
+import { TagModule } from './module/tag/tag.module';
 import database from './config/database';
 
 @Module({
@@ -17,6 +18,7 @@ import database from './config/database';
     ArticleModule,
     UserModule,
     FileModule,
+    TagModule,
   ],
   controllers: [AppController],
   providers: [
