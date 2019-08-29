@@ -1,3 +1,4 @@
+import { CreateFileDto } from './dto/create-file.dto';
 import { File } from './file.interface';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -6,12 +7,12 @@ import { Model } from 'mongoose';
 export class FileService {
   constructor(@InjectModel('File') private readonly fileModule: Model<File>) {}
 
-  async create(file: File): Promise<File> {
-    const createFile = new this.fileModule(file);
+  async create(createFileDto: CreateFileDto): Promise<File> {
+    const createFile = new this.fileModule(createFileDto);
     return await createFile.save();
   }
 
-  async findByMd5(md5: string): Promise<boolean> {
-    return await this.fileModule.findOne({ md5 });
+  async findByIds(id: string): Promise<File> {
+    return await this.fileModule.findOne({ _id: id });
   }
 }

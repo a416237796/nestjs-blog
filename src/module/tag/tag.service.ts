@@ -17,6 +17,10 @@ export class TagService {
     return await this.tagModel.findOne({ _id: id });
   }
 
+  async findByIds(ids: []): Promise<Tag[]> {
+    return await this.tagModel.find({ _id: { $in: ids } });
+  }
+
   async create(createTagDto: CreateTagDto): Promise<Tag> {
     const createTag = new this.tagModel(createTagDto);
     return await createTag.save();

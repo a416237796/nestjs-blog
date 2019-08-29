@@ -28,6 +28,10 @@ export class ClassifyService {
     return classify.length > 0 ? true : false;
   }
 
+  async findByIds(ids: []): Promise<Classify[]> {
+    return await this.classifyModel.find({ _id: { $in: ids } });
+  }
+
   async findChildren(id: string): Promise<Classify[]> {
     return await this.classifyModel.find({pid: id});
   }

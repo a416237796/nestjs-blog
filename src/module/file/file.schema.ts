@@ -1,10 +1,10 @@
 import * as mongoose from 'mongoose';
 
 export const FileSchema = new mongoose.Schema({
-  name: String,
-  path: String,
-  md5: String,
+  filename: String,
+  originalname: String,
   size: Number,
-  contentType: String,
+  mimetype: String,
+  path: String,
   createdAt: Number,
 });
