@@ -1,3 +1,4 @@
+import { File } from './../file/file.interface';
 import { Tag } from './../tag/tag.interface';
 import { Classify } from './../classify/classify.interface';
 export interface Article {
@@ -12,7 +13,7 @@ export interface Article {
   reads: number;
   recommends: number;
   top: boolean;
-  cover: string;
+  cover: File;
   classify: Classify[];
   tag: Tag[];
   createdAt: number;

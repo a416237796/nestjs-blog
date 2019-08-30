@@ -34,4 +34,9 @@ export class ArticleService {
   async findByTagId(id: string): Promise<Article[]> {
     return await this.articleModel.find({ tag: { _id: id } });
   }
+
+  async create(article: Article): Promise<Article> {
+    const createArticle = new this.articleModel(article);
+    return await createArticle.save();
+  }
 }

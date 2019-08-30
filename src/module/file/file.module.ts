@@ -24,7 +24,7 @@ const audio = ['mp3', 'wav', 'ogg'];
     MulterModule.register({
       storage: diskStorage({
         destination: (req, file, cb) => {
-          const mimetype = file.mimetype.split('/')[0];
+          const mimetype = file.mimetype.split('/')[1];
           let temp = 'other';
           image.filter(item => item === mimetype).length > 0
             ? (temp = 'image')
@@ -48,7 +48,7 @@ const audio = ['mp3', 'wav', 'ogg'];
         },
       }),
       fileFilter(req, file, cb) {
-        const mimetype = file.mimetype.split('/')[1];
+        const mimetype = file.mimetype.split('/')[1].toLowerCase();
         let temp = 'other';
         image.filter(item => item === mimetype).length > 0
           ? (temp = 'image')
@@ -68,6 +68,6 @@ const audio = ['mp3', 'wav', 'ogg'];
   ],
   controllers: [FileController],
   providers: [FileService],
-  exports: [FileService]
+  exports: [FileService],
 })
 export class FileModule {}

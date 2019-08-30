@@ -12,7 +12,7 @@ export const ArticleSchema = new mongoose.Schema({
   reads: Number,
   recommends: Number,
   top: Boolean,
-  cover: String,
+  cover: Object,
   classify: Array,
   tag: Array,
   createdAt: Number,

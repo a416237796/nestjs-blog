@@ -21,14 +21,22 @@ export class TagService {
     return await this.tagModel.find({ _id: { $in: ids } });
   }
 
-  async create(createTagDto: CreateTagDto): Promise<Tag> {
+  async create(createTagDto: Tag): Promise<Tag> {
     const createTag = new this.tagModel(createTagDto);
     return await createTag.save();
+  }
+
+  async createMany(createTagDto: Tag[]): Promise<Tag> {
+    return await this.tagModel.insertMany(createTagDto);
   }
 
   async findByName(name: string): Promise<boolean> {
     const tags = await this.tagModel.find({ name });
     return tags.length > 0 ? true : false;
+  }
+
+  async findByNames(names: string[]): Promise<Tag[]> {
+    return this.tagModel.find({name: {$in: names}});
   }
 
   async update(id: string, updateTagDto: UpdateTagDto): Promise<Tag> {

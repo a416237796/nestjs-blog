@@ -1,13 +1,13 @@
 import { ArticleModule } from './../article/article.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TagController } from './tag.controller';
 import { TagService } from './tag.service';
 import { TagSchema } from './tag.schema';
 
 @Module({
   imports: [
-    ArticleModule,
+    forwardRef(() => ArticleModule),
     MongooseModule.forFeature([
       {
         name: 'Tag',

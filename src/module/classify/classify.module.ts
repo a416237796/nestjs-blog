@@ -1,7 +1,7 @@
 import { ArticleModule } from './../article/article.module';
 import { ClassifySchema } from './classify.schema';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { ClassifyController } from './classify.controller';
 import { ClassifyService } from './classify.service';
 
@@ -13,7 +13,7 @@ import { ClassifyService } from './classify.service';
         schema: ClassifySchema,
       },
     ]),
-    ArticleModule,
+    forwardRef(() => ArticleModule),
   ],
   controllers: [ClassifyController],
   providers: [ClassifyService],

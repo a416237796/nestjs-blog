@@ -12,7 +12,7 @@ export class FileService {
     return await createFile.save();
   }
 
-  async findByIds(id: string): Promise<File> {
+  async findById(id: string): Promise<File> {
     return await this.fileModule.findOne({ _id: id });
   }
 }

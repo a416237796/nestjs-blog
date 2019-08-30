@@ -28,7 +28,7 @@ export class ClassifyService {
     return classify.length > 0 ? true : false;
   }
 
-  async findByIds(ids: []): Promise<Classify[]> {
+  async findByIds(ids: string[]): Promise<Classify[]> {
     return await this.classifyModel.find({ _id: { $in: ids } });
   }
 
