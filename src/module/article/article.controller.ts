@@ -1,8 +1,11 @@
+import { PagenationArticle } from './pagenation-article.interface';
+import { PagenationArticleDto } from './dto/pagenation-article.dto';
+import { Article } from './article.interface';
 import { ArticleService } from './article.service';
 import { ClassifyService } from './../classify/classify.service';
 import { TagService } from './../tag/tag.service';
 import { FileService } from './../file/file.service';
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put } from '@nestjs/common';
 import { CreateArticleDto } from './dto/create-article.dto';
 import * as dayjs from 'dayjs';
 
@@ -16,7 +19,7 @@ export class ArticleController {
   ) {}
 
   @Post()
-  async CreateArticleDto(@Body() createArticleDto: CreateArticleDto) {
+  async CreateArticle(@Body() createArticleDto: CreateArticleDto): Promise<Article> {
     const { classify, tag, cover } = createArticleDto;
     const classifyIds: string[] = classify.split(',');
     const tagNames: string[] = tag.split(',');
@@ -50,4 +53,10 @@ export class ArticleController {
     };
     return await this.articleService.create(articleData);
   }
+
+  @Get()
+  getArticles(@Body() pagnation: PagenationArticleDto): Promise<PagenationArticle> {
+    return this.articleService.pagenationArticle(pagnation);
+  }
+
 }
