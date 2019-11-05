@@ -27,7 +27,7 @@
     "class-transformer": "^0.2.3",
     "class-validator": "^0.10.0",
     "dayjs": "^1.8.16",
-    "mongoose": "^5.6.11",
+    "mongoose": "^5.7.5",
     "nuid": "^1.1.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
